@@ -7,7 +7,6 @@
 #include <boost/range/algorithm.hpp>
 #include <boost/lexical_cast.hpp>
 #include <string.h>
-#include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 using namespace boost::assign;
 
@@ -21,7 +20,7 @@ int main(int argc,char *argv[]){
 	char const * chars = argv[3];
 	for (int r = min ;r <= max ;r++){
 		std::vector<int> pat(r,0);
-		auto fp=boost::bind(boost::lambda::ret<char>(boost::lambda::_2[boost::lambda::_1]),_1,chars);
+		auto fp=boost::lambda::ret<const char>(*(chars + boost::lambda::_1));
 		do{
 			boost::copy(pat|boost::adaptors::transformed(fp),std::ostream_iterator<char>(std::cout));
 					std::cout << std::endl;
