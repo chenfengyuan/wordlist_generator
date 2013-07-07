@@ -23,7 +23,7 @@ int main(int argc,char *argv[]){
 		auto fp=boost::lambda::ret<const char>(*(chars + boost::lambda::_1));
 		do{
 			boost::copy(pat|boost::adaptors::transformed(fp),std::ostream_iterator<char>(std::cout));
-					std::cout << std::endl;
+					std::cout << "\n";
 		}while(boost::next_mapping(pat.begin(),pat.end(),0,len));
 	}
 	return 0;
