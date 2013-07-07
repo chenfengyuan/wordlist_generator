@@ -11,6 +11,7 @@
 using namespace boost::assign;
 
 int main(int argc,char *argv[]){
+	std::ios_base::sync_with_stdio(false);
 	if (argc<4){
 		return 1;
 	}
@@ -22,8 +23,8 @@ int main(int argc,char *argv[]){
 		std::vector<int> pat(r,0);
 		auto fp=boost::lambda::ret<const char>(*(chars + boost::lambda::_1));
 		do{
-			boost::copy(pat|boost::adaptors::transformed(fp),std::ostream_iterator<char>(std::cout));
-					std::cout << "\n";
+			boost::copy(pat|boost::adaptors::transformed(fp),std::ostreambuf_iterator<char>(std::cout));
+			std::cout << "\n";
 		}while(boost::next_mapping(pat.begin(),pat.end(),0,len));
 	}
 	return 0;
